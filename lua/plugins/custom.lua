@@ -28,4 +28,23 @@ return {
       require("vim-react-snippets").lazy_load()
     end,
   },
+  {
+    "akinsho/bufferline.nvim",
+    opts = {
+      options = {
+        mode = "tabs",
+        always_show_bufferline = true,
+      },
+    },
+  },
+  {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        {
+          { "<leader>t", group = "tabs" },
+        },
+      },
+    },
+  },
 }
