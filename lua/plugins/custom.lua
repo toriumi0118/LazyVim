@@ -19,12 +19,8 @@ return {
   },
   {
     "saghen/blink.cmp",
-    -- version = '1.*',
-    -- -- `main` is untested, please open a PR if you've confirmed it works as expected
-    dependencies = { { "L3MON4D3/LuaSnip", version = "v2.*" }, { "mlaursen/vim-react-snippets" } },
+    dependencies = { { "mlaursen/vim-react-snippets" } },
     opts = function(_, opts)
-      opts.snippets = { preset = "luasnip" }
-      opts.sources.default = { "lsp", "path", "snippets", "buffer" }
       require("vim-react-snippets").lazy_load()
     end,
   },
@@ -42,9 +38,19 @@ return {
     opts = {
       spec = {
         {
-          { "<leader>t", group = "tabs" },
+          { "s", group = "screen" },
         },
       },
+    },
+  },
+  {
+    "folke/flash.nvim",
+    -- stylua: ignore
+    keys = {
+      { "s", false },
+      { "S", false },
+      { "<leader>sf", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "<leader>sF", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
     },
   },
 }
