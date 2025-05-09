@@ -53,4 +53,20 @@ return {
       { "<leader>sF", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
     },
   },
+  {
+    "mrcjkb/rustaceanvim",
+    opts = {
+      server = {
+        default_settings = {
+          ["rust-analyzer"] = {
+            procMacro = {
+              ignored = {
+                ["async-trait"] = vim.NIL,
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 }
