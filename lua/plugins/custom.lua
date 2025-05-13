@@ -1,9 +1,11 @@
 return {
   {
-    "neovim/nvim-lspconfig",
+    "nvim-lspconfig",
     opts = {
       -- https://www.lazyvim.org/configuration/recipes#add-eslint-and-use-it-for-formatting
-      servers = { eslint = {} },
+      servers = {
+        eslint = {},
+      },
       setup = {
         eslint = function()
           require("lazyvim.util").lsp.on_attach(function(client)
@@ -18,14 +20,14 @@ return {
     },
   },
   {
-    "saghen/blink.cmp",
+    "blink.cmp",
     dependencies = { { "mlaursen/vim-react-snippets" } },
     opts = function(_, opts)
       require("vim-react-snippets").lazy_load()
     end,
   },
   {
-    "akinsho/bufferline.nvim",
+    "bufferline.nvim",
     opts = {
       options = {
         mode = "tabs",
@@ -34,7 +36,7 @@ return {
     },
   },
   {
-    "folke/which-key.nvim",
+    "which-key.nvim",
     opts = {
       spec = {
         {
@@ -44,7 +46,7 @@ return {
     },
   },
   {
-    "folke/flash.nvim",
+    "flash.nvim",
     -- stylua: ignore
     keys = {
       { "s", false },
@@ -54,7 +56,7 @@ return {
     },
   },
   {
-    "mrcjkb/rustaceanvim",
+    "rustaceanvim",
     opts = {
       server = {
         default_settings = {
@@ -68,5 +70,14 @@ return {
         },
       },
     },
+  },
+  {
+    "copilot.lua",
+    config = function(_, opts)
+      require("copilot").setup({
+        -- copilot_node_command = "/Users/toriumi0118/.local/share/mise/installs/node/22.14.0/bin/node",
+        copilot_node_command = vim.fn.expand("$HOME") .. "/.local/share/mise/installs/node/22.14.0/bin/node",
+      })
+    end,
   },
 }
