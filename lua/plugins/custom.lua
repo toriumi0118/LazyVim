@@ -2,22 +2,36 @@ return {
   {
     "nvim-lspconfig",
     opts = {
-      -- https://www.lazyvim.org/configuration/recipes#add-eslint-and-use-it-for-formatting
-      servers = {
-        eslint = {},
+      inlay_hints = {
+        enabled = false,
       },
-      setup = {
-        eslint = function()
-          require("lazyvim.util").lsp.on_attach(function(client)
-            if client.name == "eslint" then
-              client.server_capabilities.documentFormattingProvider = true
-            elseif client.name == "tsserver" then
-              client.server_capabilities.documentFormattingProvider = false
-            end
-          end)
-        end,
+      servers = {
+        yamlls = {
+          settings = {
+            format = {
+              singleQuote = false,
+            },
+          },
+        },
       },
     },
+    -- opts = {
+    --   -- https://www.lazyvim.org/configuration/recipes#add-eslint-and-use-it-for-formatting
+    --   servers = {
+    --     eslint = {},
+    --   },
+    --   setup = {
+    --     eslint = function()
+    --       require("lazyvim.util").lsp.on_attach(function(client)
+    --         if client.name == "eslint" then
+    --           client.server_capabilities.documentFormattingProvider = true
+    --         elseif client.name == "tsserver" then
+    --           client.server_capabilities.documentFormattingProvider = false
+    --         end
+    --       end)
+    --     end,
+    --   },
+    -- },
   },
   {
     "blink.cmp",
@@ -71,13 +85,13 @@ return {
       },
     },
   },
-  {
-    "copilot.lua",
-    config = function(_, opts)
-      require("copilot").setup({
-        -- copilot_node_command = "/Users/toriumi0118/.local/share/mise/installs/node/22.14.0/bin/node",
-        copilot_node_command = vim.fn.expand("$HOME") .. "/.local/share/mise/installs/node/22.14.0/bin/node",
-      })
-    end,
-  },
+  -- {
+  --   "copilot.lua",
+  --   config = function(_, opts)
+  --     require("copilot").setup({
+  --       -- copilot_node_command = "/Users/toriumi0118/.local/share/mise/installs/node/22.14.0/bin/node",
+  --       copilot_node_command = vim.fn.expand("$HOME") .. "/.local/share/mise/installs/node/22.14.0/bin/node",
+  --     })
+  --   end,
+  -- },
 }
