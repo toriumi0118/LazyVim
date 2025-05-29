@@ -13,6 +13,11 @@ return {
         widget_guides = {
           enabled = true,
         },
+        lsp = {
+          settings = {
+            enableSnippets = true,
+          },
+        },
         settings = {
           enableSnippets = false,
         },

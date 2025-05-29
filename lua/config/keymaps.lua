@@ -39,7 +39,12 @@ vim.keymap.set("n", "sN", ":tab split<CR>", { silent = true, desc = "Split buffe
 -- 特定の番号のタブに移動（s1〜s9）
 for i = 1, 9 do
   vim.keymap.set("n", "s" .. i, ":tabnext " .. i .. "<CR>", { silent = true, desc = "Go to tab " .. i })
-  vim.keymap.set("n", "sm" .. i, ":tabmove " .. i .. "<CR>", { silent = true, desc = "Move tab to position " .. i })
+  vim.keymap.set(
+    "n",
+    "sm" .. i,
+    ":tabmove " .. (i - 1) .. "<CR>",
+    { silent = true, desc = "Move tab to position " .. i }
+  )
 end
 
 vim.keymap.set("n", "<leader>fa", function()
