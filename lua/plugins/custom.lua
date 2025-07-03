@@ -96,4 +96,12 @@ return {
       dashboard = { enabled = false },
     },
   },
+  {
+    "folke/noice.nvim",
+    opts = {
+      messages = {
+        enabled = false,
+      },
+    },
+  },
 }
