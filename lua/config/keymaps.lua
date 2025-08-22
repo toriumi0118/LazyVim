@@ -30,11 +30,11 @@ vim.keymap.set("n", "s+", "<C-w>+", { desc = "Increase split height" })
 vim.keymap.set("n", "s-", "<C-w>-", { desc = "Decrease split height" })
 
 -- タブ操作
-vim.keymap.set("n", "st", ":tabnew<CR>", { silent = true, desc = "Open new tab" })
+vim.keymap.set("n", "sN", ":tabnew<CR>", { silent = true, desc = "Open new tab" })
 vim.keymap.set("n", "sn", ":tabnext<CR>", { silent = true, desc = "Next tab" })
 vim.keymap.set("n", "sp", ":tabprevious<CR>", { silent = true, desc = "Previous tab" })
 vim.keymap.set("n", "sx", ":tabclose<CR>", { silent = true, desc = "Close current tab" })
-vim.keymap.set("n", "sN", ":tab split<CR>", { silent = true, desc = "Split buffer into new tab" })
+vim.keymap.set("n", "st", ":tab split<CR>", { silent = true, desc = "Split buffer into new tab" })
 
 -- 特定の番号のタブに移動（s1〜s9）
 for i = 1, 9 do
