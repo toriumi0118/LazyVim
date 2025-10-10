@@ -4,3 +4,4 @@
 
 vim.opt.relativenumber = false
 vim.opt.wrap = true
+vim.g.root_spec = { "cwd" }

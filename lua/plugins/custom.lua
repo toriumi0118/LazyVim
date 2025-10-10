@@ -6,16 +6,8 @@ return {
         enabled = false,
       },
       servers = {
-        eslint = {
-          root_dir = require("lspconfig.util").root_pattern(
-            ".eslintrc.js",
-            ".eslintrc.cjs",
-            ".eslintrc.json",
-            "package.json",
-            "pnpm-workspace.yaml"
-          ),
-          settings = { eslint = { workingDirectories = { { mode = "auto" } } } },
-        },
+        eslint = {},
+        tsserver = {},
         yamlls = { settings = { yaml = { format = { singleQuote = true } } } },
       },
       setup = {
