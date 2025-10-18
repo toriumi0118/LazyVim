@@ -6,24 +6,24 @@ return {
         enabled = false,
       },
       servers = {
-        eslint = {},
-        tsserver = {},
+        -- eslint = {},
+        -- tsserver = {},
         yamlls = { settings = { yaml = { format = { singleQuote = true } } } },
       },
       setup = {
-        eslint = function()
-          require("lazyvim.util").lsp.on_attach(function(client)
-            if client.name == "eslint" then
-              client.server_capabilities.documentFormattingProvider = true
-            elseif client.name == "tsserver" then
-              client.server_capabilities.documentFormattingProvider = false
-            elseif client.name == "vtsls" then
-              client.server_capabilities.documentFormattingProvider = false
-            elseif client.name == "ts-ls" then
-              client.server_capabilities.documentFormattingProvider = false
-            end
-          end)
-        end,
+        -- eslint = function()
+        --   require("lazyvim.util").lsp.on_attach(function(client)
+        --     if client.name == "eslint" then
+        --       client.server_capabilities.documentFormattingProvider = true
+        --     elseif client.name == "tsserver" then
+        --       client.server_capabilities.documentFormattingProvider = false
+        --     elseif client.name == "vtsls" then
+        --       client.server_capabilities.documentFormattingProvider = false
+        --     elseif client.name == "ts-ls" then
+        --       client.server_capabilities.documentFormattingProvider = false
+        --     end
+        --   end)
+        -- end,
       },
     },
   },
