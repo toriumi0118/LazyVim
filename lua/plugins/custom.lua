@@ -29,10 +29,9 @@ return {
   },
   {
     "blink.cmp",
-    dependencies = { { "mlaursen/vim-react-snippets" } },
+    dependencies = { { "mlaursen/vim-react-snippets", opts = {} } },
     opts = function(_, opts)
       require("luasnip.loaders.from_lua").load()
-      require("vim-react-snippets").lazy_load()
       opts.snippets.preset = "luasnip"
     end,
   },
