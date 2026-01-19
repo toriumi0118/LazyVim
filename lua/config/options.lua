@@ -5,3 +5,4 @@
 vim.opt.relativenumber = false
 vim.opt.wrap = true
 vim.g.root_spec = { "cwd" }
+vim.g.vimtex_view_method = "skim"
