@@ -95,6 +95,11 @@ return {
     opts = {
       dashboard = { enabled = false },
     },
+    keys = {
+      -- <leader>e/<leader>E はoilに譲るため無効化
+      { "<leader>e", false },
+      { "<leader>E", false },
+    },
   },
   {
     "folke/noice.nvim",
