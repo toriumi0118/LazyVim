@@ -106,4 +106,5 @@ return {
       },
     },
   },
+  { "mattn/vim-typespec" },
 }
