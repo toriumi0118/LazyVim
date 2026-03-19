@@ -87,9 +87,57 @@ return {
       {
         "<leader>fh",
         function()
-          Snacks.picker.files({ hidden = true })
+          Snacks.picker.files({ hidden = true, no_ignore = true })
         end,
         desc = "Find Files (hidden)",
+      },
+      -- ファイル名 + コンテンツのfuzzy find
+      -- item.text = "filename content" として snacks matcher が空白区切りで AND 検索
+      {
+        "<leader>fs",
+        function()
+          Snacks.picker({
+            title = "Find Files & Content",
+            finder = function(opts, ctx)
+              return require("snacks.picker.source.proc").proc(
+                ctx:opts({
+                  cmd = "rg",
+                  args = {
+                    "--color=never",
+                    "--no-heading",
+                    "--with-filename",
+                    "--line-number",
+                    "--smart-case",
+                    "--hidden",
+                    "--glob=!.git",
+                    "--glob=!.bare",
+                    "-0",
+                    "--",
+                    "", -- 空パターン = 全行マッチ
+                  },
+                  transform = function(item)
+                    local null_pos = item.text:find("\0")
+                    if not null_pos then
+                      return false
+                    end
+                    local file = item.text:sub(1, null_pos - 1)
+                    local rest = item.text:sub(null_pos + 1)
+                    local lnum, text = rest:match("^(%d+):(.*)")
+                    if not lnum then
+                      return false
+                    end
+                    item.file = file
+                    item.pos = { tonumber(lnum), 0 }
+                    -- ファイル名とコンテンツを結合: "api.dart abc" のように検索できる
+                    item.text = file .. " " .. vim.trim(text)
+                  end,
+                }),
+                ctx
+              )
+            end,
+          })
+        end,
+        desc = "Find Files & Content",
       },
     },
   },
