@@ -83,6 +83,14 @@ return {
       -- <leader>e/<leader>E はoilに譲るため無効化
       { "<leader>e", false },
       { "<leader>E", false },
+      -- 隠しファイルを含むファイル探索
+      {
+        "<leader>fh",
+        function()
+          Snacks.picker.files({ hidden = true })
+        end,
+        desc = "Find Files (hidden)",
+      },
     },
   },
   {
