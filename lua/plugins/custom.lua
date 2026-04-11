@@ -52,6 +52,7 @@ return {
     "rustaceanvim",
     opts = {
       server = {
+        cmd = { vim.fn.expand("$HOME") .. "/.local/share/mise/shims/rust-analyzer" },
         default_settings = {
           ["rust-analyzer"] = {
             procMacro = {

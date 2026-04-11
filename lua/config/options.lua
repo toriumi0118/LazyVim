@@ -8,3 +8,4 @@ vim.g.root_spec = { "cwd" }
 vim.g.vimtex_view_method = "skim"
 -- vim.g.latex_latexmk_options = "-pdf"
 vim.opt.clipboard = "unnamedplus"
+vim.g.vimtex_quickfix_ignore_filters = { "Underfull", "Overfull", "LaTeX Warning" }
