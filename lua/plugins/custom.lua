@@ -129,12 +129,21 @@ return {
                     end
                     item.file = file
                     item.pos = { tonumber(lnum), 0 }
+                    item.line = vim.trim(text)
                     -- ファイル名とコンテンツを結合: "api.dart abc" のように検索できる
-                    item.text = file .. " " .. vim.trim(text)
+                    item.text = file .. " " .. item.line
                   end,
                 }),
                 ctx
               )
+            end,
+            confirm = function(picker, item, action)
+              local sel = picker:selected({ fallback = false })
+              if #sel > 1 then
+                Snacks.picker.actions.qflist(picker)
+              else
+                Snacks.picker.actions.jump(picker, item, action)
+              end
             end,
           })
         end,
