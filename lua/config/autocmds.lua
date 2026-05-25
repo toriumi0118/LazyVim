@@ -8,22 +8,14 @@
 -- Disable spell checking for markdown files
 vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
--- ESLint: formatter優先度設定 + save時 --fix
+-- JS/TS の LSP formatting は conform.nvim に統一するため無効化
+-- diagnostics は引き続き各 LSP が担う
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     if not client then return end
-    if client.name == "eslint" then
-      client.server_capabilities.documentFormattingProvider = true
-    elseif client.name == "vtsls" or client.name == "ts_ls" then
+    if vim.tbl_contains({ "eslint", "biome", "vtsls", "ts_ls" }, client.name) then
       client.server_capabilities.documentFormattingProvider = false
     end
-  end,
-})
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.ts", "*.tsx", "*.js", "*.jsx" },
-  callback = function()
-    vim.lsp.buf.format({ name = "eslint", async = false })
   end,
 })

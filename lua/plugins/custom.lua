@@ -173,4 +173,18 @@ return {
     },
   },
   { "mattn/vim-typespec" },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      -- biome → prettier → eslint_d の順に root_markers で自動判定
+      -- stop_after_first = true により最初にマッチしたもののみ実行
+      formatters_by_ft = {
+        javascript      = { "biome", "prettier", "eslint_d", stop_after_first = true },
+        javascriptreact = { "biome", "prettier", "eslint_d", stop_after_first = true },
+        typescript      = { "biome", "prettier", "eslint_d", stop_after_first = true },
+        typescriptreact = { "biome", "prettier", "eslint_d", stop_after_first = true },
+      },
+      format_on_save = { timeout_ms = 3000 },
+    },
+  },
 }
