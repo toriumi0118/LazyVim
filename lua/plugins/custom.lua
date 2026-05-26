@@ -184,7 +184,12 @@ return {
         typescript      = { "biome", "prettier", "eslint_d", stop_after_first = true },
         typescriptreact = { "biome", "prettier", "eslint_d", stop_after_first = true },
       },
-      format_on_save = { timeout_ms = 3000 },
+      -- format_on_save 自体は LazyVim が制御するためここでは設定しない
+      -- timeout だけ伸ばしたいので default_format_opts で上書き
+      default_format_opts = {
+        timeout_ms = 3000,
+        lsp_format = "fallback",
+      },
     },
   },
 }
