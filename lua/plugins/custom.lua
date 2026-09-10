@@ -71,6 +71,10 @@ return {
       require("copilot").setup({
         -- copilot_node_command = "/Users/toriumi0118/.local/share/mise/installs/node/22.14.0/bin/node",
         copilot_node_command = vim.fn.expand("$HOME") .. "/.local/share/mise/installs/node/22.14.0/bin/node",
+        -- copilot.luaはmarkdownなどをデフォルトで無効化しているため明示的に有効化
+        filetypes = {
+          markdown = true,
+        },
       })
     end,
   },
