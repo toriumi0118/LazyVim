@@ -68,10 +68,22 @@ return {
   {
     "copilot.lua",
     config = function(_, opts)
+      -- mise にインストール済みの node のうち最新版を自動検出する。
+      -- バージョン固定パスだと mise upgrade で消えた際に
+      -- "[Copilot.lua] Could not determine Node.js version" になるため。
+      local function find_node()
+        local pattern = vim.fn.expand("$HOME") .. "/.local/share/mise/installs/node/*/bin/node"
+        local best, best_ver
+        for _, path in ipairs(vim.fn.glob(pattern, true, true)) do
+          local ver = vim.version.parse(path:match("/node/([^/]+)/bin/node$") or "")
+          if ver and vim.fn.executable(path) == 1 and (not best_ver or vim.version.gt(ver, best_ver)) then
+            best, best_ver = path, ver
+          end
+        end
+        return best or "node"
+      end
       require("copilot").setup({
-        -- copilot_node_command = "/Users/toriumi0118/.local/share/mise/installs/node/22.14.0/bin/node",
-        copilot_node_command = vim.fn.expand("$HOME") .. "/.local/share/mise/installs/node/22.14.0/bin/node",
-        -- copilot.luaはmarkdownなどをデフォルトで無効化しているため明示的に有効化
+        copilot_node_command = find_node(),
         filetypes = {
           markdown = true,
         },
@@ -183,9 +195,9 @@ return {
       -- biome → prettier → eslint_d の順に root_markers で自動判定
       -- stop_after_first = true により最初にマッチしたもののみ実行
       formatters_by_ft = {
-        javascript      = { "biome", "prettier", "eslint_d", stop_after_first = true },
+        javascript = { "biome", "prettier", "eslint_d", stop_after_first = true },
         javascriptreact = { "biome", "prettier", "eslint_d", stop_after_first = true },
-        typescript      = { "biome", "prettier", "eslint_d", stop_after_first = true },
+        typescript = { "biome", "prettier", "eslint_d", stop_after_first = true },
         typescriptreact = { "biome", "prettier", "eslint_d", stop_after_first = true },
       },
       -- format_on_save 自体は LazyVim が制御するためここでは設定しない
